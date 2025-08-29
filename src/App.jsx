@@ -8,12 +8,14 @@ function App() {
     "Vicino canta alle 3 di notte",
     "Gatto ignora salvataggio eroico",
   ];
-  const [articles, setArticles] = useState(initialArticles)
+  const [articles, setArticles] = useState(initialArticles);
   const [newArticle, setNewArticle] = useState("");
   const handleForm = (e) => {
     e.preventDefault();
-    alert(`Titolo inviato: ${newArticle}`);
-    console.log(newArticle);
+    
+  const copyArticles = [...articles, newArticle]
+  setArticles(copyArticles)
+  setNewArticle("")
   };
   return (
     <>
