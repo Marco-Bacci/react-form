@@ -1,6 +1,10 @@
 import { useState } from "react";
-
 function App() {
+  const [newArticle, setNewArticle] = useState("articolo");
+  const handleForm = (e) => {
+    e.preventDefault();
+    alert(`Titolo inviato: ${newArticle}`);
+  };
   const articles = [
     "Calzino spaiato, quartiere in allerta",
     "Divane inghiotte uomo",
@@ -25,16 +29,20 @@ function App() {
           </div>
           <div className="col-6">
             <h2 className="text-center m-3">NUOVO TITOLO</h2>
-            <form className="mt-5">
-              <div className="form d-flex gap-3">
+            <form className="mt-5" onSubmit={handleForm}>
+              <div className="d-flex gap-3">
                 <input
-                  class="form-control form-control-lg"
+                  className="form-control form-control-lg"
                   type="text"
+                  value={newArticle}
+                  onChange={(e) => {
+                    setNewArticle(e.target.value);
+                  }}
                   placeholder="Aggiungi un nuovo titolo di un articolo"
                   aria-label=".form-control-lg example"
                 ></input>
-                <button type="button" class="btn btn-outline-dark">
-                  Dark
+                <button type="submit" className="btn btn-outline-dark">
+                  INVIA
                 </button>
               </div>
             </form>
