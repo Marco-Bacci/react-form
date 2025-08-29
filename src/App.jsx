@@ -1,11 +1,6 @@
 import { useState } from "react";
 function App() {
-  const [newArticle, setNewArticle] = useState("articolo");
-  const handleForm = (e) => {
-    e.preventDefault();
-    alert(`Titolo inviato: ${newArticle}`);
-  };
-  const articles = [
+  const initialArticles = [
     "Calzino spaiato, quartiere in allerta",
     "Divane inghiotte uomo",
     "Piante che giudicano",
@@ -13,19 +8,28 @@ function App() {
     "Vicino canta alle 3 di notte",
     "Gatto ignora salvataggio eroico",
   ];
+  const [articles, setArticles] = useState(initialArticles)
+  const [newArticle, setNewArticle] = useState("");
+  const handleForm = (e) => {
+    e.preventDefault();
+    alert(`Titolo inviato: ${newArticle}`);
+    console.log(newArticle);
+  };
   return (
     <>
       <div className="container">
         <div className="row">
           <div className="col-6">
             <h2 className="text-center m-3">LISTA TITOLI </h2>
-            {articles.map((article) => {
-              return (
-                <ul class="list-group">
-                  <li class="list-group-item">{article}</li>
-                </ul>
-              );
-            })}
+            <ul className="list-group">
+              {articles.map((article, index) => {
+                return (
+                  <li key={index} className="list-group-item">
+                    {article}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
           <div className="col-6">
             <h2 className="text-center m-3">NUOVO TITOLO</h2>
