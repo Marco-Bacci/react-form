@@ -13,11 +13,19 @@ function App() {
 
   const handleForm = (e) => {
     e.preventDefault();
-
     const copyArticles = [...articles, newArticle];
     setArticles(copyArticles);
     setNewArticle("");
   };
+
+  // funzione per eliminare articolo
+  const deleteArticle = (index) => {
+    const updatedArticle = articles.filter((item, i)=>{
+      return i !== index
+    })
+    setArticles(updatedArticle)
+  }
+
   return (
     <>
       <div className="container">
@@ -32,7 +40,11 @@ function App() {
                     className="list-group-item d-flex justify-content-between"
                   >
                     <div>{article}</div>
-                    <button type="submit" className="btn btn-danger ">
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => deleteArticle(index)}
+                    >
                       Elimina
                     </button>
                   </li>
