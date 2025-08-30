@@ -2,7 +2,7 @@ import { useState } from "react";
 function App() {
   const initialArticles = [
     "Calzino spaiato, quartiere in allerta",
-    "Divane inghiotte uomo",
+    "Divano inghiotte uomo",
     "Piante che giudicano",
     "Attentato a React",
     "Vicino canta alle 3 di notte",
@@ -10,12 +10,13 @@ function App() {
   ];
   const [articles, setArticles] = useState(initialArticles);
   const [newArticle, setNewArticle] = useState("");
+
   const handleForm = (e) => {
     e.preventDefault();
-    
-  const copyArticles = [...articles, newArticle]
-  setArticles(copyArticles)
-  setNewArticle("")
+
+    const copyArticles = [...articles, newArticle];
+    setArticles(copyArticles);
+    setNewArticle("");
   };
   return (
     <>
@@ -26,8 +27,14 @@ function App() {
             <ul className="list-group">
               {articles.map((article, index) => {
                 return (
-                  <li key={index} className="list-group-item">
-                    {article}
+                  <li
+                    key={index}
+                    className="list-group-item d-flex justify-content-between"
+                  >
+                    <div>{article}</div>
+                    <button type="submit" className="btn btn-danger ">
+                      Elimina
+                    </button>
                   </li>
                 );
               })}
